@@ -1,0 +1,4 @@
+Store_1 170
+Store_2 200
+Store_3 70
+Store_4 120
