@@ -115,8 +115,16 @@ def mapSearch(key, map):
     Pre-conditions:
         map is an instance of NonEmptyMap
     Post-conditions:
-        Returns the value associated with the key, or None if the key is not there"""
-    pass
+        Returns the value associated with the key, or None if the key is not there
+    """
+    if (map.key == key):
+        return map.value
+    elif (map.key > key):
+        mapSearch(key, map.left)
+    elif (map.key < key):
+        mapSearch(key, map.right)
+    else:
+        return "None"
 
 ######################################################################################################
 # MAIN FUNCTION DEFINITION
