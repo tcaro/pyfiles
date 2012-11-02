@@ -81,12 +81,18 @@ def mapInsert(key, value, map):
     Post-conditions:
         Returns an instance of NonEmptyMap with the new key and value added
     """
-    if (key > map.value):
-        mapInsert(key, value, map.left)
+    if isinstance(map, EmptyMap):
         return mkNonEmptyMap(mkEmptyMap(), key, value, mkEmptyMap())
-    elif (key < map.value):
-        mapInsert(key, value, map.right)
-        return mkNonEmptyMap(mkEmptyMap(), key, value, mkEmptyMap())
+    if (key > map.key):
+        if isinstance(map.left, EmptyMap):
+            return mkNonEmptyMap(mkEmptyMap(), key, value, mkEmptyMap())
+        else:
+            mapInsert(key, value, map.left)
+    elif (key < map.key):
+        if isinstance(map.right, EmptyMap):
+            return mkNonEmptyMap(mkEmptyMap(), key, value, mkEmptyMap())
+        else:
+            mapInsert(key, value, map.right)
     else:
         map.value = value
         return map
