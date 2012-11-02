@@ -89,6 +89,7 @@ def mapInsert(key, value, map):
         return mkNonEmptyMap(mkEmptyMap(), key, value, mkEmptyMap())
     else:
         map.value = value
+        return map
 
 
 def mapToString(map):
