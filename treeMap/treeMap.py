@@ -134,3 +134,54 @@ def mapSearch(key, map):
 
 def main():
     pass
+
+######################################################################################################
+######################################################################################################
+######################################################################################################
+
+"""
+language: python3
+author: A. Nunes-Harwitt
+description: Example maps from number names to numbers
+"""
+
+############################################################
+# Example trees
+############################################################
+
+
+smallMap = mapInsert('one', \
+                        1,  \
+                        mapInsert('two', \
+                                     2,  \
+                                     mapInsert('three', 3, mkEmptyMap())))
+
+
+numberMap = mapInsert(                                  \
+   'seven',                                             \
+      7,                                                \
+      mapInsert(                                        \
+      'eight',                                          \
+         8,                                             \
+         mapInsert(                                     \
+         'two',                                         \
+            2,                                          \
+            mapInsert(                                  \
+            'six',                                      \
+               6,                                       \
+               mapInsert(                               \
+               'nine',                                  \
+                  9,                                    \
+                  mapInsert(                            \
+                  'five',                               \
+                     5,                                 \
+                     mapInsert(                         \
+                     'three',                           \
+                        3,                              \
+                        mapInsert(                      \
+                        'four',                         \
+                           4,                           \
+                           mapInsert(                   \
+                           'one',                       \
+                              1,                        \
+                              mkEmptyMap())))))))))
