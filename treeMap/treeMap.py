@@ -82,22 +82,21 @@ def mapInsert(key, value, map):
         Returns an instance of NonEmptyMap with the new key and value added
     """
     if isinstance(map, EmptyMap):
-        return mkNonEmptyMap(mkEmptyMap(), key, value, mkEmptyMap())
-    elif (key > map.key):
+        map = mkNonEmptyMap(mkEmptyMap(), key, value, mkEmptyMap())
+    elif (key < map.key):
         if isinstance(map.left, EmptyMap):
             map.left = mkNonEmptyMap(mkEmptyMap(), key, value, mkEmptyMap())
-            return map
         else:
             mapInsert(key, value, map.left)
-    elif (key < map.key):
+    elif (key > map.key):
         if isinstance(map.right, EmptyMap):
             map.right = mkNonEmptyMap(mkEmptyMap(), key, value, mkEmptyMap())
-            return map
         else:
             mapInsert(key, value, map.right)
     else:
         map.value = value
-        return map
+
+    return map
 
 
 def mapToString(map):
@@ -111,7 +110,10 @@ def mapToString(map):
     Post-conditions:
         Returns a string that represents a map
     """
-    pass
+    if isinstance(map, EmptyMap):
+        return "_"
+    else:
+        return ("(" + mapToString(map.left) + ", " + map.key + "->" + str(map.value) + ", " + mapToString(map.right) + ")")
 
 
 def mapSearch(key, map):
@@ -127,63 +129,10 @@ def mapSearch(key, map):
         Returns the value associated with the key, or None if the key is not there
     """
     if isinstance(map, EmptyMap):
-        return "None"
+        return None
     if (map.key == key):
         return map.value
     elif (map.key > key):
         mapSearch(key, map.left)
     elif (map.key < key):
         mapSearch(key, map.right)
-
-######################################################################################################
-######################################################################################################
-######################################################################################################
-
-"""
-language: python3
-author: A. Nunes-Harwitt
-description: Example maps from number names to numbers
-"""
-
-############################################################
-# Example trees
-############################################################
-
-
-smallMap = mapInsert('one', \
-                        1,  \
-                        mapInsert('two', \
-                                     2,  \
-                                     mapInsert('three', 3, mkEmptyMap())))
-
-
-numberMap = mapInsert(                                  \
-   'seven',                                             \
-      7,                                                \
-      mapInsert(                                        \
-      'eight',                                          \
-         8,                                             \
-         mapInsert(                                     \
-         'two',                                         \
-            2,                                          \
-            mapInsert(                                  \
-            'six',                                      \
-               6,                                       \
-               mapInsert(                               \
-               'nine',                                  \
-                  9,                                    \
-                  mapInsert(                            \
-                  'five',                               \
-                     5,                                 \
-                     mapInsert(                         \
-                     'three',                           \
-                        3,                              \
-                        mapInsert(                      \
-                        'four',                         \
-                           4,                           \
-                           mapInsert(                   \
-                           'one',                       \
-                              1,                        \
-                              mkEmptyMap())))))))))
-
-print(mapSearch('eight', numberMap))
