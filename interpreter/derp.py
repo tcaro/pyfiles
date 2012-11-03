@@ -165,7 +165,6 @@ def infix(node):
     else:
         return node.name
 
-
 ##############################################################################
 # evaluate
 ##############################################################################
@@ -176,8 +175,20 @@ def evaluate(node, symTbl):
     Given the expression at the node, return the integer result of evaluating
     the node.
     Precondition: all variable names must exist in symTbl"""
-
-    pass
+    if isinstance(node, MultiplyNode):
+        return evaluate(node.left, symTbl) * evaluate(node.right, symTbl)
+    elif isinstance(node, DivideNode):
+        return evaluate(node.left, symTbl) // evaluate(node.right, symTbl)
+    elif isinstance(node, AddNode):
+        return evaluate(node.left, symTbl) + evaluate(node.right, symTbl)
+    elif isinstance(node, SubtractNode):
+        return evaluate(node.left, symTbl) - evaluate(node.right, symTbl)
+    elif isinstance(node, VariableNode):
+        for var in symTbl:
+            if var == node.name:
+                return symTbl[var]
+    else:
+        return node.val
 
 ##############################################################################
 # main
