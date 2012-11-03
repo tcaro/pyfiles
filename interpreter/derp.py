@@ -191,6 +191,31 @@ def evaluate(node, symTbl):
         return node.val
 
 ##############################################################################
+# Handle file
+##############################################################################
+
+
+def handleFile(fileName):
+    """
+    Takes data from a file and created a dictionary from the data.
+
+    Parameters:
+        fileName (string) - the name of the file to open
+    Pre-conditions:
+        The file exists and is formatted correctly
+    Post-conditons:
+        returns a dictionary of the data
+    """
+    f = open(fileName)
+    symTbl = {}
+
+    for line in f:
+        l = line.split()
+        symTbl[l[0]] = int(l[1])
+
+    return symTbl
+
+##############################################################################
 # main
 ##############################################################################
 
@@ -206,6 +231,10 @@ def main():
     inFile = input("Herp, enter symbol table file: ")
 
     # STUDENT: CONSTRUCT AND DISPLAY THE SYMBOL TABLE HERE
+    symTbl = handleFile(inFile)
+
+    for var in symTbl:
+        print("Name: " + var + " => " + str(symTbl[var]))
 
     print("Herp, enter prefix expressions, e.g.: + 10 20 (RETURN to quit)...")
 
@@ -220,16 +249,17 @@ def main():
 
         # STUDENT: CALL parse WITH THE LIST OF TOKENS AND SAVE THE ROOT OF
         # THE PARSE TREE
+        root = parse(prefixExp.split())
 
         # STUDENT: GENERATE THE INFIX EXPRESSION BY CALLING infix AND SAVING
         # THE STRINGG
 
-        print("Derping the infix expression:")
+        print("Derping the infix expression: " + infix(root))
 
         # STUDENT: EVALUTE THE PARSE TREE BY CALLING evaluate AND SAVING THE
         # INTEGER RESULT
 
-        print("Derping the evaluation:")
+        print("Derping the evaluation: " + str(evaluate(root, symTbl)))
 
     print("Goodbye Herp :(")
 
