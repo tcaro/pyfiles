@@ -83,14 +83,16 @@ def mapInsert(key, value, map):
     """
     if isinstance(map, EmptyMap):
         return mkNonEmptyMap(mkEmptyMap(), key, value, mkEmptyMap())
-    if (key > map.key):
+    elif (key > map.key):
         if isinstance(map.left, EmptyMap):
-            return mkNonEmptyMap(mkEmptyMap(), key, value, mkEmptyMap())
+            map.left = mkNonEmptyMap(mkEmptyMap(), key, value, mkEmptyMap())
+            return map
         else:
             mapInsert(key, value, map.left)
     elif (key < map.key):
         if isinstance(map.right, EmptyMap):
-            return mkNonEmptyMap(mkEmptyMap(), key, value, mkEmptyMap())
+            map.right = mkNonEmptyMap(mkEmptyMap(), key, value, mkEmptyMap())
+            return map
         else:
             mapInsert(key, value, map.right)
     else:
@@ -124,14 +126,14 @@ def mapSearch(key, map):
     Post-conditions:
         Returns the value associated with the key, or None if the key is not there
     """
+    if isinstance(map, EmptyMap):
+        return "None"
     if (map.key == key):
         return map.value
     elif (map.key > key):
         mapSearch(key, map.left)
     elif (map.key < key):
         mapSearch(key, map.right)
-    else:
-        return "None"
 
 ######################################################################################################
 ######################################################################################################
@@ -183,3 +185,5 @@ numberMap = mapInsert(                                  \
                            'one',                       \
                               1,                        \
                               mkEmptyMap())))))))))
+
+print(mapSearch('eight', numberMap))
