@@ -26,7 +26,7 @@ def ui():
     """
     print()
     print("Enter the expression to evalue the integral for.")
-    print("Example: 3x**2+2x+9")
+    print("Example: (3*x**2) + (2*x) + 9")
     expression = input("y = ")
     print()
     print("Enter the interval to integrate over.")
@@ -39,7 +39,7 @@ def ui():
     print("Example: 4")
     n = int(input("Sub-intervals: "))
 
-    return (expression, int(line[0]), int(line[1]), n)
+    return (expression, float(eval(line[0])), float(eval(line[1])), n)
 
 ################################################################################################
 # RIGHT ENDPOINT RULE
