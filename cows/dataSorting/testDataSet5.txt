@@ -1,0 +1,5 @@
+Merchant_01 70
+Merchant_02 170
+Merchant_03 120
+Merchant_04 200
+Merchant_05 150

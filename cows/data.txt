@@ -1,0 +1,4 @@
+bomb RED 10 10 1
+cow Daisy 10 11
+bomb GREEN 10 12 2
+cow Fauntleroy 10 12

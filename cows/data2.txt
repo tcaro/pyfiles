@@ -1,0 +1,7 @@
+cow Daisy 6 1
+bomb YELLOW 6 3 2
+bomb GREEN 3 1 5
+bomb BLACK 7 0 2
+bomb RED 9 2 3
+cow Milka 9 4
+bomb BLUE 0 5 5
